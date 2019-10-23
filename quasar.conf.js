@@ -80,8 +80,13 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       // https: true,
-      // port: 8080,
-      open: true // opens browser window automatically
+      port: 8081,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8080'
+        }
+      },
+      open: false // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations

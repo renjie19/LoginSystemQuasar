@@ -6,12 +6,12 @@
     <q-input label="ADDRESS" clearable v-model="employee.address"></q-input>
     <q-input label="POSITION" clearable v-model="employee.position"></q-input>
     <q-input label="LICENSE" clearable type="number" v-model="employee.license.licenseNumber"></q-input>
-    <q-btn label="SUBMIT" @click="submit"></q-btn>
+    <q-btn label="SUBMIT" @click="save"></q-btn>
   </q-form>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -29,14 +29,24 @@ export default {
     }
   },
   methods: {
-    submit () {
-      console.log(this.$store.getters['index/getList'])
+    ...mapMutations('index', { add: 'add', remove: 'remove' }),
+    save (employee) {
+      this.add(this.employee)
+      this.employee = {
+        employeeId: 0,
+        name: null,
+        age: null,
+        address: null,
+        position: null,
+        license: {
+          licenseId: null,
+          licenseNumber: null
+        }
+      }
     }
   },
   computed: {
-    ...mapGetters([
-      'index/getList'
-    ])
+
   }
 }
 </script>

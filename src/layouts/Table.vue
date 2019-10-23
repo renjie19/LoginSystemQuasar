@@ -6,8 +6,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="employee in employees" :key="employee.id" @click="itemClick(employee)">
-        <td>employee.name</td>
+      <tr v-for="item in items" :key="item.name" @click="itemClick(item)">
+        <td>{{ item.name }}</td>
       </tr>
       </tbody>
     </q-markup-table>

@@ -1,4 +1,9 @@
-export const getList = state => {
-  console.log('in getters')
-  return state.employees
+export default {
+  getReports: state => {
+    console.log('rrrr')
+    return employee => {
+      console.log('e')
+      return state.reports.filter(report => report.timeIn.employeeId === employee.employeeId)
+    }
+  }
 }
