@@ -1,16 +1,26 @@
 <template>
   <q-page>
     <q-card class="card">
-      <q-item-label>Employee Id</q-item-label>
-      <q-input></q-input>
-      <q-btn class="">SUBMIT</q-btn>
+      <q-input type="number" label="Employee Id" v-model="id"></q-input>
+      <q-btn @click="log">SUBMIT</q-btn>
     </q-card>
   </q-page>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-
+  data () {
+    return {
+      id: null
+    }
+  },
+  methods: {
+    ...mapActions('employee', { login: 'logEmployee' }),
+    log () {
+      this.login(this.id)
+    }
+  }
 }
 </script>
 

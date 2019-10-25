@@ -9,6 +9,12 @@ export default {
       }
     })
   },
+  saveAll: (state, employees) => {
+    state.employees = employees
+  },
+  saveAllReports: (state, reports) => {
+    state.reports = reports
+  },
   filterReports: (state, employee) => {
     state.selectedReports = state.reports.filter(report => report.timeIn.employeeId === employee.employeeId)
   },

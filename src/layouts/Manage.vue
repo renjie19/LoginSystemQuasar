@@ -3,11 +3,11 @@
     <employee-table :items ="list" @employeeSelected="selectItem"></employee-table>
     <div class="shadow-1">
       <q-form style="margin: 10px 30px 10px 30px">
-        <q-input label="NAME" type="text" clearable v-model="employee.name"/>
-        <q-input label="AGE" type="number" clearable v-model="employee.age"/>
-        <q-input label="ADDRESS" type="text" clearable v-model="employee.address"/>
-        <q-input label="POSITION" type="text" clearable v-model="employee.position"/>
-        <q-input label="LICENSE" type="number" clearable v-model="employee.license.licenseNumber"/>
+        <q-input label="NAME" type="text" clearable :disable="edit" v-model="employee.name"/>
+        <q-input label="AGE" type="number" clearable :disable="edit" v-model="employee.age"/>
+        <q-input label="ADDRESS" type="text" clearable :disable="edit" v-model="employee.address"/>
+        <q-input label="POSITION" type="text" clearable :disable="edit" v-model="employee.position"/>
+        <q-input label="LICENSE" type="number" clearable :disable="edit" v-model="employee.license.licenseNumber"/>
       </q-form>
     </div>
     <q-btn-group>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Table from './Table'
 
 export default {
@@ -35,23 +35,25 @@ export default {
           licenseId: null,
           licenseNumber: null
         }
-      }
+      },
+      edit: true
     }
   },
   components: {
     employeeTable: Table
   },
   methods: {
-    ...mapMutations('index', { update: 'update', removeEmployee: 'remove' }),
+    ...mapActions('employee', { removeSomeone: 'deleteEmployee', updateEmployee: 'updateEmployee' }),
     deleteEmployee () {
-      this.removeEmployee(this.employee)
+      this.removeSomeone(this.employee)
       this.clear()
     },
     save () {
-      this.update(this.employee)
+      this.updateEmployee(this.employee)
       this.clear()
     },
     selectItem (item) {
+      this.edit = false
       this.employee = {
         employeeId: item.employeeId,
         name: item.name,
@@ -65,6 +67,7 @@ export default {
       }
     },
     clear () {
+      this.edit = true
       this.employee = {
         employeeId: null,
         name: null,
@@ -79,7 +82,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('index', { list: 'employees' })
+    ...mapState('employee', { list: 'employees' })
   }
 }
 </script>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import index from './employee'
+import employee from './employee'
 // import * as getters from './employee/getters'
 // import example from './employee'
 Vue.use(Vuex)
@@ -14,7 +14,7 @@ export default function (/* { ssrContext } */) {
   return new Vuex.Store({
     modules: {
       // example
-      index
+      employee
     },
     // getters,
 

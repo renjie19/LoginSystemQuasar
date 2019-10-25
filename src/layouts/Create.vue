@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -29,9 +29,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('index', { add: 'add', remove: 'remove' }),
+    ...mapActions('employee', { create: 'createEmployee' }),
     save (employee) {
-      this.add(this.employee)
+      this.create(this.employee)
       this.employee = {
         employeeId: 0,
         name: null,
