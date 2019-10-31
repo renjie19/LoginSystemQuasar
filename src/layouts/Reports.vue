@@ -36,7 +36,7 @@
                 </q-icon>
               </template>
             </q-input>
-            <q-input label="Start Date" filled v-model="endDate" mask="date" :rules="['date']">
+            <q-input label="End Date" filled v-model="endDate" mask="date" :rules="['date']">
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
                   <q-popup-proxy ref="endDatePicker" transition-show="scale" transition-hide="scale">

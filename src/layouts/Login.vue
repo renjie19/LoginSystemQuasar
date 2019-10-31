@@ -18,7 +18,7 @@ export default {
   methods: {
     ...mapActions('employee', { login: 'logEmployee' }),
     log () {
-      this.login(this.id)
+      this.login(parseInt(this.id))
     }
   }
 }
