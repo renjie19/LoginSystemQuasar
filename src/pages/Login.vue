@@ -1,8 +1,8 @@
 <template>
-  <q-page>
-    <q-card class="card">
+  <q-page class="row">
+    <q-card class="col-4 offset-5 self-center" style="width: 300px; height: 100px">
       <q-input type="number" label="Employee Id" v-model="id"></q-input>
-      <q-btn @click="log">SUBMIT</q-btn>
+      <q-btn @click="log" v-ripple>SUBMIT</q-btn>
     </q-card>
   </q-page>
 </template>
@@ -18,7 +18,9 @@ export default {
   methods: {
     ...mapActions('employee', { login: 'logEmployee' }),
     log () {
-      this.login(parseInt(this.id))
+      if (this.id) {
+        this.login(parseInt(this.id))
+      }
     }
   }
 }

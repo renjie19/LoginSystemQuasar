@@ -1,8 +1,8 @@
 import Navigation from '../layouts/Navigation'
-import Login from '../layouts/Login'
-import Create from '../layouts/Create'
-import Manage from '../layouts/Manage'
-import Reports from '../layouts/Reports'
+import Login from '../pages/Login'
+import Create from '../pages/Create'
+import Manage from '../pages/Manage'
+import Reports from '../pages/Reports'
 
 const routes = [
   {

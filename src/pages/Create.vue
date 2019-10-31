@@ -1,5 +1,5 @@
 <template>
-  <q-form class="absolute-center shadow-2" style="width: 300px;padding: 10px">
+  <q-form class="column shadow-2" style="width: 300px;padding: 20px;margin: auto">
     <q-item-label>INFORMATION</q-item-label>
     <q-input label="NAME" clearable v-model="employee.name"></q-input>
     <q-input label="AGE" clearable type="number" v-model="employee.age"></q-input>
@@ -30,17 +30,20 @@ export default {
   },
   methods: {
     ...mapActions('employee', { create: 'createEmployee' }),
-    save (employee) {
-      this.create(this.employee)
-      this.employee = {
-        employeeId: 0,
-        name: null,
-        age: null,
-        address: null,
-        position: null,
-        license: {
-          licenseId: null,
-          licenseNumber: null
+    save () {
+      if (this.employee.name && this.employee.age && this.employee.address && this.employee.position &&
+        this.employee.license.licenseNumber) {
+        this.create(this.employee)
+        this.employee = {
+          employeeId: 0,
+          name: null,
+          age: null,
+          address: null,
+          position: null,
+          license: {
+            licenseId: null,
+            licenseNumber: null
+          }
         }
       }
     }

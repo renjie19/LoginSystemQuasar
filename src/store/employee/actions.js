@@ -1,9 +1,13 @@
 import axios from 'axios'
+import Notify from 'quasar/src/plugins/Notify'
 export default {
   createEmployee: async ({ commit }, employee) => {
     await axios.post('/api/employee/save', employee)
       .then(response => commit('add', response.data))
-      .catch((e) => console.log(e))
+      .catch(e => Notify.create({
+        message: e.response.data.message,
+        position: 'top'
+      }))
   },
   getEmployees: async ({ commit }) => {
     await axios.get('/api/employee/getAll')
@@ -22,7 +26,10 @@ export default {
       }
     })
       .then(response => console.log(response.data))
-      .catch(e => console.log(e))
+      .catch(e => Notify.create({
+        message: e.response.data.message,
+        position: 'top'
+      }))
   },
   deleteEmployee: async ({ commit }, employee) => {
     await axios({

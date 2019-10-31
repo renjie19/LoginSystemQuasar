@@ -78,11 +78,10 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
-import Table from './Table'
+import Table from '../components/Table'
 export default {
   data () {
     return {
-      reportList: null,
       employee: {},
       selectedReport: {
         id: null,
