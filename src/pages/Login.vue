@@ -9,6 +9,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Notify from 'quasar/src/plugins/Notify'
 export default {
   data () {
     return {
@@ -20,6 +21,18 @@ export default {
     log () {
       if (this.id) {
         this.login(parseInt(this.id))
+          .then(() => Notify.create({
+            message: 'Login Successful',
+            position: 'top',
+            color: 'green'
+          }))
+          .catch(error => {
+            Notify.create({
+              message: error,
+              position: 'top',
+              color: 'red'
+            })
+          })
       }
     }
   }

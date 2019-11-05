@@ -1,8 +1,8 @@
 export default {
-  add: (state, employee) => {
+  addToList: (state, employee) => {
     state.employees.push(employee)
   },
-  remove: (state, employee) => {
+  removeFromList: (state, employee) => {
     state.employees.forEach(e => {
       if (e.employeeId === employee.employeeId) {
         state.employees.splice(state.employees.indexOf(e), 1)
@@ -18,7 +18,7 @@ export default {
   filterReports: (state, employee) => {
     state.selectedReports = state.reports.filter(report => report.timeIn.employeeId === employee.employeeId)
   },
-  update: (state, employee) => {
+  updateEmployee: (state, employee) => {
     state.employees.forEach(e => {
       if (e.employeeId === employee.employeeId) {
         e.name = employee.name

@@ -12,6 +12,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Notify from 'quasar/src/plugins/Notify'
 export default {
   data () {
     return {
@@ -34,6 +35,16 @@ export default {
       if (this.employee.name && this.employee.age && this.employee.address && this.employee.position &&
         this.employee.license.licenseNumber) {
         this.create(this.employee)
+          .then(Notify.create({
+            message: 'Created Successfully',
+            position: 'top',
+            color: 'green'
+          }))
+          .catch(response => Notify.create({
+            message: response,
+            position: 'top',
+            color: 'red'
+          }))
         this.employee = {
           employeeId: 0,
           name: null,

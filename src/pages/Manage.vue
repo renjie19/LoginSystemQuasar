@@ -23,6 +23,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Table from '../components/Table'
+import Notify from 'quasar/src/plugins/Notify'
 
 export default {
   data () {
@@ -48,10 +49,36 @@ export default {
     ...mapActions('employee', { removeSomeone: 'deleteEmployee', updateEmployee: 'updateEmployee' }),
     deleteEmployee () {
       this.removeSomeone(this.employee)
-      this.clear()
+        .then(() => {
+          Notify.create({
+            message: 'Successfully Removed',
+            position: 'top',
+            color: 'green'
+          })
+          this.clear()
+        })
+        .catch(err => Notify.create({
+          message: err,
+          position: 'top',
+          color: 'Red'
+        }))
     },
     save () {
       this.updateEmployee(this.employee)
+        .then(() => {
+          Notify.create({
+            message: 'Update Successful',
+            position: 'top',
+            color: 'Green'
+          })
+          this.clear()
+        }
+        )
+        .catch(response => Notify.create({
+          message: response,
+          position: top,
+          color: 'red'
+        }))
       this.clear()
     },
     selectItem (item) {
